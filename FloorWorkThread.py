@@ -35,11 +35,12 @@ class WorkThread(threading.Thread):
 
             try:
                 url = self.queue.get()
-                print(url)
                 html = requests.get(url, headers=RequestModel.getHeaders(), proxies=RequestModel.getProxies(), timeout=3)
-                print('线程id ' + str(self.id) + ' 请求的结果： '  + str(html.status_code))
-                time.sleep(1)
+                print('线程 ' + str(self.id) + ' 请求【 ' + url + ' 】的结果： '  + str(html.status_code))
+                time.sleep(3)
+
             except Exception as e:
                 # print('catsh  Exception ==== ')
                 print(e)
+
 

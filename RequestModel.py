@@ -41,6 +41,11 @@ class RequestModel(object):
         "Opera/9.80 (Windows NT 5.1; U; zh-sg) Presto/2.9.181 Version/12.00"
     ]
 
+    Proxy_Pool = [
+        # '121.232.144.5:9000',
+        '',
+    ]
+
     # 获取不同的请求头
     @classmethod
     def getHeaders(cls):
@@ -54,9 +59,10 @@ class RequestModel(object):
         return headers
 
     # 获取代理
-    @staticmethod
-    def getProxies():
+    @classmethod
+    def getProxies(cls):
         proxies = {
-
+            'http': random.choice(cls.Proxy_Pool),
+            'https': random.choice(cls.Proxy_Pool)
         }
         return proxies

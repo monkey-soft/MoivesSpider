@@ -34,7 +34,7 @@ def startSpider():
     for i in range(THREAD_SUM):
         workthread = WorkThread(floorQueue, i)
         workthread.start()
-        workthread.join()
+        # workthread.join()
 
 
 if __name__ == '__main__':
