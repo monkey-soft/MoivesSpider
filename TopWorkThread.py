@@ -11,24 +11,20 @@ from TaskQueue import TaskQueue
 from dytt8.dytt8Moive import dytt_Lastest
 
 '''
-    1)自己封装抓取二级网页多线程
-    2)由一级链接 抓取 电影目录
-    例如：由 http://www.dytt8.net/html/gndy/dyzz/list_23_2.html 获取
-           "2017年动画喜剧《宝贝老板》英国粤三语.BD中英双字幕" 和 "页面 url 地址"等若干条电影的信息
+    1)从电影详细信息页面【http://www.dytt8.net/html/gndy/dyzz/20170806/54695.html】中抓取目标内容
+    2)将数据存储到数据库中
 @Author monkey
-@Date 2017-08-08
+@Date 2017-08-14
 '''
-
-class FloorWorkThread(threading.Thread):
+class TopWorkThread(threading.Thread):
 
     NOT_EXIST = 0
-
-    host = 'http://www.dytt8.net'
 
     def __init__(self, queue, id):
         threading.Thread.__init__(self)
         self.queue = queue
         self.id = id
+
 
 
     def run(self):
@@ -42,7 +38,7 @@ class FloorWorkThread(threading.Thread):
             try:
                 url = self.queue.get()
                 response = requests.get(url, headers=RequestModel.getHeaders(), proxies=RequestModel.getProxies(), timeout=3)
-                print('Floor 子线程 ' + str(self.id) + ' 请求【 ' + url + ' 】的结果： ' + str(response.status_code))
+                print('Top 子线程 ' + str(self.id) + ' 请求【 ' + url + ' 】的结果： ' + str(response.status_code))
 
                 # 需将电影天堂的页面的编码改为 GBK, 不然会出现乱码的情况
                 response.encoding = 'GBK'
@@ -51,13 +47,9 @@ class FloorWorkThread(threading.Thread):
                     self.queue.put(url)
                     time.sleep(20)
                 else :
-                    moivePageUrlList = dytt_Lastest.getMoivePageUrlList(response.text)
-                    for item in moivePageUrlList:
-                        each = self.host + item
-                        print(each)
-                        TaskQueue.putToMiddleQueue(each)
+                    tmpDir = dytt_Lastest.getMoiveInforms(response.text)
+                    # TaskQueue.getContentQueue().put()
                 time.sleep(5)
 
             except Exception as e:
-                # print('catsh  Exception ==== ')
                 print(e)

@@ -42,8 +42,8 @@ class RequestModel(object):
     ]
 
     Proxy_Pool = [
-        # '121.232.144.5:9000',
-        '',
+        'web-proxy.oa.com:8080',
+        # '',
     ]
 
     # 获取不同的请求头
@@ -53,8 +53,9 @@ class RequestModel(object):
             'User-Agent': random.choice(cls.UserAgent_List),
             'Accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
             'Accept-Encoding': 'gzip, deflate, sdch',
-            'Accept - Language': 'zh - CN, zh;q = 0.8',
-            'Referer': 'http: // www.dytt8.net / html / gndy / dyzz / index.html',
+            'Accept-Language': 'zh-CN,zh;q=0.8',
+            'Host':'www.dytt8.net',
+            # 'Referer': 'http: //www.dytt8.net/html/gndy/dyzz/index.html',
         }
         return headers
 
@@ -62,7 +63,8 @@ class RequestModel(object):
     @classmethod
     def getProxies(cls):
         proxies = {
-            'http': random.choice(cls.Proxy_Pool),
-            'https': random.choice(cls.Proxy_Pool)
+            # 'http': random.choice(cls.Proxy_Pool),
+            # 'http':'web-proxy.oa.com:8080',
+            # 'https': random.choice(cls.Proxy_Pool)
         }
         return proxies
