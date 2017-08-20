@@ -69,9 +69,84 @@ class dytt_Lastest(object):
     @classmethod
     def getMoiveInforms(cls, html):
         '''
-        解析电影信息页面的内容
+        解析电影信息页面的内容, 具体如下：
+        类型        : 疾速特攻/疾速追杀2][BD-mkv.720p.中英双字][2017年高分惊悚动作]
+        ◎译名      : ◎译\u3000\u3000名\u3000疾速特攻/杀神John Wick 2(港)/捍卫任务2(台)/疾速追杀2/极速追杀：第二章/约翰·威克2
+        ◎片名      : ◎片\u3000\u3000名\u3000John Wick: Chapter Two
+        ◎年代　    : ◎年\u3000\u3000代\u30002017
+        ◎国家　    : ◎产\u3000\u3000地\u3000美国
+        ◎类别　    : ◎类\u3000\u3000别\u3000动作/犯罪/惊悚
+        ◎语言　    : ◎语\u3000\u3000言\u3000英语
+        ◎字幕　    : ◎字\u3000\u3000幕\u3000中英双字幕
+        ◎IMDb评分  : ◎上映日期\u30002017-02-10(美国)
+        ◎豆瓣评分　 : ◎IMDb评分\xa0 8.1/10 from 86,240 users
+        ◎文件格式   : ◎豆瓣评分\u30007.7/10 from 2,915 users
+        ◎视频尺寸　 : ◎文件格式\u3000x264 + aac
+        ◎文件大小　 : ◎视频尺寸\u30001280 x 720
+        ◎片长　    :  ◎文件大小\u30001CD
+        ◎导演　    : ◎片\u3000\u3000长\u3000122分钟
+        ◎主演　    : ◎导\u3000\u3000演\u3000查德·史塔赫斯基 Chad Stahelski
+        ◎简介      :
+        ◎获奖情况
+        ◎海报
+        影片截图
+        下载地址
         '''
-        list = []
-        selector = etree.HTML(html)  # tr/tr/td/div/td/p/text()
-        content = selector.xpath("//div[@class='co_content8']/ul/")
-        print(content)
+        print(html)
+        contentList = []
+        selector = etree.HTML(html)
+        content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/p/text()")
+        # 匹配出来有两张图片, 第一张是海报, 第二张是电影画面截图
+        imgs = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/p/img/@src")
+        # print(content)
+        # 类型
+        contentList.append('['+content[0])
+        # 译名
+        # ◎译\u3000\u3000名\u3000  一共占居6位
+        contentList.append(content[1][6: len(content[1])])
+        # 片名
+        contentList.append(content[2][6:len(content[2])])
+        # 年份
+        contentList.append(content[3][6:len(content[3])])
+        # 产地
+        contentList.append(content[4][6:len(content[4])])
+        # 类别
+        contentList.append(content[5][6:len(content[5])])
+        # 语言
+        contentList.append(content[6][6:len(content[6])])
+        # 字幕
+        contentList.append(content[7][6:len(content[7])])
+        # 上映日期
+        contentList.append(content[8][6:len(content[8])])
+        # IMDb评分
+        contentList.append(content[9][9:len(content[9])])
+        # 豆瓣评分
+        contentList.append(content[10][6:len(content[10])])
+        # 文件格式
+        contentList.append(content[11][6:len(content[11])])
+        # 视频尺寸
+        contentList.append(content[12][6:len(content[12])])
+        # 文件大小
+        contentList.append(content[13][6:len(content[13])])
+        # 片长
+        contentList.append(content[14][6:len(content[14])])
+        #　导演
+        contentList.append(content[15][5:len(content[15])])
+        #　主演
+        actor = content[16][5:len(content[16])]
+        for item in content:
+            if item[0: 4] == '\u3000\u3000\u3000\u3000':
+                actor = actor + '\n'+ item[6: len(item)]
+
+        contentList.append(actor)
+        # 海报
+        contentList.append(imgs[0])
+        # 影片截图
+        contentList.append(imgs[1])
+        # 下载地址
+        # ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/table/tbody/tr/td/a/text()")
+        ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/table/tbody/tr/td/a/text()")
+        print('=============')
+        print(ftp)
+        print('=============')
+        return contentList

@@ -47,8 +47,8 @@ class TopWorkThread(threading.Thread):
                     self.queue.put(url)
                     time.sleep(20)
                 else :
-                    tmpDir = dytt_Lastest.getMoiveInforms(response.text)
-                    # TaskQueue.getContentQueue().put()
+                    temp = dytt_Lastest.getMoiveInforms(response.text)
+                    TaskQueue.getContentQueue().put(temp)
                 time.sleep(5)
 
             except Exception as e:
