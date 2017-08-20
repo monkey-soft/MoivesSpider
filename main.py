@@ -18,7 +18,7 @@ from dytt8.dytt8Moive import dytt_Lastest
 '''
 
 # 截止到2017-08-08, 最新电影一共才有 164 个页面
-LASTEST_MOIVE_TOTAL_SUM = 6 #164
+LASTEST_MOIVE_TOTAL_SUM = 10 #164
 
 # 请求网络线程总数, 线程不要调太好, 不然会返回很多 400
 THREAD_SUM = 5
@@ -74,13 +74,13 @@ def insertData():
             'm_id' int auto_increment,
             'm_type' varchar(100),
             'm_trans_name' varchar(200),
-            'm_name' varchar(100),
+            'm_name' varchar(200),
             'm_decade' varchar(30),
             'm_conutry' varchar(30),
             'm_level' varchar(100),
             'm_language' varchar(30),
             'm_subtitles' varchar(100),
-            'm_publish' varchar(30),
+            'm_publish' varchar(100),
             'm_IMDB_socre' varchar(50),
             'm_douban_score' varchar(50),
             'm_format' varchar(20),
@@ -89,7 +89,7 @@ def insertData():
             'm_duration' varchar(10),
             'm_director' varchar(50),
             'm_actors' varchar(1000),
-#            'm_synopsis' varchar(5000),
+#           'm_synopsis' varchar(5000),
 #           'm_prize' varchar(5000),
             'm_placard' varchar(200),
             'm_screenshot' varchar(200),

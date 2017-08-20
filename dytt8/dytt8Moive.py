@@ -78,21 +78,22 @@ class dytt_Lastest(object):
         ◎类别　    : ◎类\u3000\u3000别\u3000动作/犯罪/惊悚
         ◎语言　    : ◎语\u3000\u3000言\u3000英语
         ◎字幕　    : ◎字\u3000\u3000幕\u3000中英双字幕
-        ◎IMDb评分  : ◎上映日期\u30002017-02-10(美国)
-        ◎豆瓣评分　 : ◎IMDb评分\xa0 8.1/10 from 86,240 users
-        ◎文件格式   : ◎豆瓣评分\u30007.7/10 from 2,915 users
-        ◎视频尺寸　 : ◎文件格式\u3000x264 + aac
-        ◎文件大小　 : ◎视频尺寸\u30001280 x 720
-        ◎片长　    :  ◎文件大小\u30001CD
-        ◎导演　    : ◎片\u3000\u3000长\u3000122分钟
-        ◎主演　    : ◎导\u3000\u3000演\u3000查德·史塔赫斯基 Chad Stahelski
+        ◎上映日期  ：◎上映日期\u30002017-02-10(美国)
+        ◎IMDb评分  : ◎IMDb评分\xa0 8.1/10 from 86,240 users
+        ◎豆瓣评分　 : ◎豆瓣评分\u30007.7/10 from 2,915 users
+        ◎文件格式   : ◎文件格式\u3000x264 + aac
+        ◎视频尺寸　 : ◎视频尺寸\u30001280 x 720
+        ◎文件大小　 : ◎文件大小\u30001CD
+        ◎片长　    : ◎片\u3000\u3000长\u3000122分钟
+        ◎导演　    : ◎导\u3000\u3000演\u3000查德·史塔赫斯基 Chad Stahelski
+        ◎主演　    :
         ◎简介      :
         ◎获奖情况
         ◎海报
         影片截图
         下载地址
         '''
-        print(html)
+        # print(html)
         contentList = []
         selector = etree.HTML(html)
         content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/p/text()")
@@ -100,40 +101,40 @@ class dytt_Lastest(object):
         imgs = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/p/img/@src")
         # print(content)
         # 类型
-        contentList.append('['+content[0])
+        contentList.append('类型: ' +'['+content[0])
         # 译名
         # ◎译\u3000\u3000名\u3000  一共占居6位
-        contentList.append(content[1][6: len(content[1])])
+        contentList.append('译名: ' +content[1][6: len(content[1])])
         # 片名
-        contentList.append(content[2][6:len(content[2])])
+        contentList.append('片名: ' +content[2][6:len(content[2])])
         # 年份
-        contentList.append(content[3][6:len(content[3])])
+        contentList.append('年份: ' +content[3][6:len(content[3])])
         # 产地
-        contentList.append(content[4][6:len(content[4])])
+        contentList.append('产地: ' +content[4][6:len(content[4])])
         # 类别
-        contentList.append(content[5][6:len(content[5])])
+        contentList.append('类别: ' +content[5][6:len(content[5])])
         # 语言
-        contentList.append(content[6][6:len(content[6])])
+        contentList.append('语言: ' +content[6][6:len(content[6])])
         # 字幕
-        contentList.append(content[7][6:len(content[7])])
+        contentList.append('字幕: ' +content[7][6:len(content[7])])
         # 上映日期
-        contentList.append(content[8][6:len(content[8])])
+        contentList.append('上映日期: ' +content[8][6:len(content[8])])
         # IMDb评分
-        contentList.append(content[9][9:len(content[9])])
+        contentList.append('IMDb评分: ' +content[9][9:len(content[9])])
         # 豆瓣评分
-        contentList.append(content[10][6:len(content[10])])
+        contentList.append('豆瓣评分: ' +content[10][6:len(content[10])])
         # 文件格式
-        contentList.append(content[11][6:len(content[11])])
+        contentList.append('文件格式: ' +content[11][6:len(content[11])])
         # 视频尺寸
-        contentList.append(content[12][6:len(content[12])])
+        contentList.append('视频尺寸: ' +content[12][6:len(content[12])])
         # 文件大小
-        contentList.append(content[13][6:len(content[13])])
+        contentList.append('文件大小: ' +content[13][6:len(content[13])])
         # 片长
-        contentList.append(content[14][6:len(content[14])])
+        contentList.append('片长: ' +content[14][6:len(content[14])])
         #　导演
-        contentList.append(content[15][5:len(content[15])])
+        contentList.append('导演: ' +content[15][5:len(content[15])])
         #　主演
-        actor = content[16][5:len(content[16])]
+        actor = '主演: ' +content[16][5:len(content[16])]
         for item in content:
             if item[0: 4] == '\u3000\u3000\u3000\u3000':
                 actor = actor + '\n'+ item[6: len(item)]
@@ -144,9 +145,9 @@ class dytt_Lastest(object):
         # 影片截图
         contentList.append(imgs[1])
         # 下载地址
-        # ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/table/tbody/tr/td/a/text()")
         ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/table/tbody/tr/td/a/text()")
-        print('=============')
-        print(ftp)
-        print('=============')
+        contentList.append('下载地址: ' +ftp[0])
+
+        for i in  contentList:
+            print(i)
         return contentList

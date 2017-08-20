@@ -54,7 +54,7 @@ class FloorWorkThread(threading.Thread):
                     moivePageUrlList = dytt_Lastest.getMoivePageUrlList(response.text)
                     for item in moivePageUrlList:
                         each = self.host + item
-                        print(each)
+                        # print(each)
                         TaskQueue.putToMiddleQueue(each)
                 time.sleep(5)
 
