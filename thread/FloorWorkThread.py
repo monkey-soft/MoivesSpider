@@ -2,13 +2,13 @@
 #coding=utf-8
 
 import threading
-import requests
 import time
 
+import requests
 
-from RequestModel import RequestModel
-from TaskQueue import TaskQueue
 from dytt8.dytt8Moive import dytt_Lastest
+from model.RequestModel import RequestModel
+from model.TaskQueue import TaskQueue
 
 '''
     1)自己封装抓取二级网页多线程
@@ -39,8 +39,8 @@ class FloorWorkThread(threading.Thread):
                 self.queue.task_done()
                 break
 
+            url = self.queue.get()
             try:
-                url = self.queue.get()
                 response = requests.get(url, headers=RequestModel.getHeaders(), proxies=RequestModel.getProxies(), timeout=3)
                 print('Floor 子线程 ' + str(self.id) + ' 请求【 ' + url + ' 】的结果： ' + str(response.status_code))
 
@@ -56,8 +56,9 @@ class FloorWorkThread(threading.Thread):
                         each = self.host + item
                         # print(each)
                         TaskQueue.putToMiddleQueue(each)
-                time.sleep(5)
+                time.sleep(3) # 5
 
             except Exception as e:
                 # print('catsh  Exception ==== ')
+                self.queue.put(url)
                 print(e)

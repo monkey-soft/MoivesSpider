@@ -2,13 +2,13 @@
 #coding=utf-8
 
 import threading
-import requests
 import time
 
+import requests
 
-from RequestModel import RequestModel
-from TaskQueue import TaskQueue
 from dytt8.dytt8Moive import dytt_Lastest
+from model.RequestModel import RequestModel
+from model.TaskQueue import TaskQueue
 
 '''
     1)从电影详细信息页面【http://www.dytt8.net/html/gndy/dyzz/20170806/54695.html】中抓取目标内容
@@ -35,8 +35,8 @@ class TopWorkThread(threading.Thread):
                 self.queue.task_done()
                 break
 
+            url = self.queue.get()
             try:
-                url = self.queue.get()
                 response = requests.get(url, headers=RequestModel.getHeaders(), proxies=RequestModel.getProxies(), timeout=3)
                 print('Top 子线程 ' + str(self.id) + ' 请求【 ' + url + ' 】的结果： ' + str(response.status_code))
 
@@ -52,4 +52,5 @@ class TopWorkThread(threading.Thread):
                 time.sleep(5)
 
             except Exception as e:
+                self.queue.put(url)
                 print(e)

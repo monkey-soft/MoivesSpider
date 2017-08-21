@@ -2,15 +2,13 @@
 #coding=utf-8
 
 
-from queue import Queue
-import time
 import sqlite3
 
-from FloorWorkThread import FloorWorkThread
-from TaskQueue import TaskQueue
-from TopWorkThread import TopWorkThread
-from Utils import Utils
 from dytt8.dytt8Moive import dytt_Lastest
+from model.TaskQueue import TaskQueue
+from thread.FloorWorkThread import FloorWorkThread
+from thread.TopWorkThread import TopWorkThread
+from utils.Utils import Utils
 
 '''
     程序主入口
@@ -22,15 +20,15 @@ from dytt8.dytt8Moive import dytt_Lastest
 LASTEST_MOIVE_TOTAL_SUM = 6 #164
 
 # 请求网络线程总数, 线程不要调太好, 不然会返回很多 400
-THREAD_SUM = 5
+THREAD_SUM = 3
 
 
 def startSpider():
     # 实例化对象
 
     # 获取【最新电影】有多少个页面
-    # LASTEST_MOIVE_TOTAL_SUM = dytt_Lastest.getMaxsize()
-
+    LASTEST_MOIVE_TOTAL_SUM = dytt_Lastest.getMaxsize()
+    print('【最新电影】一共  ' + str(LASTEST_MOIVE_TOTAL_SUM) + '  有个页面')
     dyttlastest = dytt_Lastest(LASTEST_MOIVE_TOTAL_SUM)
     floorlist = dyttlastest.getPageUrlList()
 
@@ -61,7 +59,7 @@ def startSpider():
         else:
             pass
 
-    # insertData()
+    insertData()
 
 
 def insertData():

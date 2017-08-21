@@ -1,11 +1,7 @@
+import requests
 from lxml import etree
 
-import requests
-import sqlite3
-
-from RequestModel import RequestModel
-from TaskQueue import TaskQueue
-from Utils import Utils
+from model.RequestModel import RequestModel
 
 '''
 @Desc

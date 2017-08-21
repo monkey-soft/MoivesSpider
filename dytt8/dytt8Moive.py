@@ -12,7 +12,7 @@
 import requests
 from lxml import etree
 
-from RequestModel import RequestModel
+from model.RequestModel import RequestModel
 
 
 class dytt_Lastest(object):
