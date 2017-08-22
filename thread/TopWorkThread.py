@@ -52,5 +52,5 @@ class TopWorkThread(threading.Thread):
                 time.sleep(5)
 
             except Exception as e:
-                self.queue.put(url)
+                # self.queue.put(url)
                 print(e)

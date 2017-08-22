@@ -121,24 +121,160 @@ from model.RequestModel import RequestModel
 
 # 测试案例4
 # '''
-# 有点,  解析失败
+# 有点坑~ 估计是网站改版过。导致线上存在好几个不同的类型页面, 进而影响抓取结果为空
+# 需要做下兼容
 # Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20170713/54501.html 】的结果： 200
 # Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20170514/53986.html 】的结果： 200
 # Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20170413/53726.html 】的结果： 200
 # Top 子线程 4 请求【 http://www.dytt8.net/html/gndy/dyzz/20170327/53562.html 】的结果： 200
 # Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20170310/53447.html 】的结果： 200
 # Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20170310/53446.html 】的结果： 200
-#
+# ========================================================================================
 # Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20170414/53727.html 】的结果： 200
 # Top 子线程 2 请求【 http://www.dytt8.net/html/gndy/dyzz/20170318/53507.html 】的结果： 200
+# ========================================================================================
+# Top 子线程 2 请求【 http://www.dytt8.net/html/gndy/dyzz/20091012/22194.html 】的结果： 200
+# Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20091012/22192.html 】的结果： 200
+# Top 子线程 1 请求【 http://www.dytt8.net/html/gndy/dyzz/20091012/22189.html 】的结果： 200
+# Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20091012/22184.html 】的结果： 200
+# Top 子线程 1 请求【 http://www.dytt8.net/html/gndy/dyzz/20091011/22172.html 】的结果： 200
+# Top 子线程 2 请求【 http://www.dytt8.net/html/gndy/dyzz/20091012/22193.html 】的结果： 200
+# ========================================================================================
+# Top 子线程 1 请求【 http://www.dytt8.net/html/gndy/dyzz/20091023/22428.html 】的结果： 200
+# Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20091022/22418.html 】的结果： 200
+# ========================================================================================
+# Top 子线程 2 请求【 http://www.dytt8.net/html/gndy/dyzz/20091027/22516.html 】的结果： 200
+# Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20091027/22515.html 】的结果： 200
+# ========================================================================================
+# Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20091104/22688.html 】的结果： 200
+# 没有下载地址
+# ========================================================================================
+# Top 子线程 1 请求【 http://www.dytt8.net/html/gndy/dyzz/20091014/22223.html 】的结果： 200
+# Top 子线程 2 请求【 http://www.dytt8.net/html/gndy/dyzz/20091007/22074.html 】的结果： 200
+# Top 子线程 2 请求【 http://www.dytt8.net/html/gndy/dyzz/20091018/22327.html 】的结果： 200
+# Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20091017/22304.html 】的结果： 200
+# Top 子线程 1 请求【 http://www.dytt8.net/html/gndy/dyzz/20091014/22239.html 】的结果： 200
+# ========================================================================================
+# Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20091023/22441.html 】的结果： 200
+# Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20091023/22439.html 】的结果： 200
+# ========================================================================================
+# Top 子线程 2 请求【 http://www.dytt8.net/html/gndy/dyzz/20091022/22414.html 】的结果： 200
+# Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20091018/22326.html 】的结果： 200
+# Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20091016/22282.html 】的结果： 200
+# Top 子线程 1 请求【 http://www.dytt8.net/html/gndy/dyzz/20091014/22239.html 】的结果： 200
+# Top 子线程 2 请求【 http://www.dytt8.net/html/gndy/dyzz/20091007/22074.html 】的结果： 200
+# Top 子线程 2 请求【 http://www.dytt8.net/html/gndy/dyzz/20091018/22327.html 】的结果： 200
+# Top 子线程 1 请求【 http://www.dytt8.net/html/gndy/dyzz/20091021/22381.html 】的结果： 200
+# Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20091028/22540.html 】的结果： 200
+# Top 子线程 1 请求【 http://www.dytt8.net/html/gndy/dyzz/20091016/22282.html 】的结果： 200
+# ========================================================================================
+# Top 子线程 3 请求【 http://www.dytt8.net/html/gndy/dyzz/20141029/46502.html 】的结果： 200
+# Top 子线程 2 请求【 http://www.dytt8.net/html/gndy/dyzz/20141026/46484.html 】的结果： 200
+# Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20141022/46458.html 】的结果： 200
+# ========================================================================================
+# Top 子线程 4 请求【 http://www.dytt8.net/html/gndy/dyzz/20120815/38998.html 】的结果： 200
+# Top 子线程 3 请求【 http://www.dytt8.net/html/gndy/dyzz/20120811/38936.html 】的结果： 200
+# Top 子线程 0 请求【 http://www.dytt8.net/html/gndy/dyzz/20120825/39129.html 】的结果： 200
+# Top 子线程 1 请求【 http://www.dytt8.net/html/gndy/dyzz/20120809/38919.html 】的结果： 200
+# Top 子线程 2 请求【 http://www.dytt8.net/html/gndy/dyzz/20120807/38894.html 】的结果： 200
+# Top 子线程 3 请求【 http://www.dytt8.net/html/gndy/dyzz/20120904/39251.html 】的结果： 200
+
 # '''
-url = 'http://www.dytt8.net/html/gndy/dyzz/20170713/54501.html'
+url = 'http://www.dytt8.net/html/gndy/dyzz/20120807/38894.html'
 response = requests.get(url, headers=RequestModel.getHeaders(), proxies=RequestModel.getProxies(), timeout=3)
 print(' 请求【 ' + url + ' 】的结果： ' + str(response.status_code))
 response.encoding = 'GBK'
 selector = etree.HTML(response.text)
-# print(response.text)
-content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/div/text()")
+# print(response.text)   # 页面内容
+
+
+content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/p/text()")
+print('第 1 次： content')
+print(content)
+
 # 匹配出来有两张图片, 第一张是海报, 第二张是电影画面截图
 imgs = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/p/img/@src")
+
+
+
+# 为了兼容 2012 年前的页面
+if not len(content):
+    print('第 2 次： content')
+    content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/span/text()")
+
+# 有些页面特殊, 需要用以下表达式来重新获取信息
+if not len(content):
+    print('第 3 次： content')
+    content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/div/text()")
+
+if not len(content):
+    print('第 4 次： content')
+    content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/p/font/text()")
+    if len(content) < 5:
+        content = selector.xpath("//div[@class='co_content8']/ul/tr/td/p/font/text()")
+
+if not len(content):
+    print('第 5 次： content')
+    content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/p/span/text()")
+
+if not len(content):
+    print('第 6 次： content')
+    content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/div/span/text()")
+
+if not len(content):
+    print('第 7 次： content')
+    content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/font/text()")
+
+if not len(content):
+    print('第 8 次： content')
+    content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/p/text()")
+
+
+
+if not len(imgs):
+    imgs = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/img/@src")
+
+if not len(imgs):
+    imgs = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/p/img/@src")
+
+if not len(imgs):
+    imgs = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/div/img/@src")
+
+if not len(imgs):
+    imgs = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/div/img/@src")
+
+
+
+ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/table/tbody/tr/td/a/text()")
+
+# 为了兼容 2012 年前的页面
+if not len(ftp):
+    ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/table/tbody/tr/td/font/a/text()")
+
+if not len(ftp):
+    ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/table/tbody/tr/td/a/text()")
+
+if not len(ftp):
+    ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/div/table/tbody/tr/td/font/a/text()")
+
+if not len(ftp):
+    ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/div/table/tbody/tr/td/a/text()")
+
+if not len(ftp):
+    ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/table/tbody/tr/td/a/text()")
+
+if not len(ftp):
+    ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/p/span/a/text()")
+
+if not len(ftp):
+    ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/div/div/table/tbody/tr/td/font/a/text()")
+
+if not len(ftp):
+    ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/span/table/tbody/tr/td/font/a/text()")
+
+if not len(ftp):
+    ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/div/span/div/table/tbody/tr/td/font/a/text()")
+
 print(content)
+print(ftp)
+print(imgs)

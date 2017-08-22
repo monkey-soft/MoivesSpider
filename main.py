@@ -20,7 +20,7 @@ from utils.Utils import Utils
 LASTEST_MOIVE_TOTAL_SUM = 6 #164
 
 # 请求网络线程总数, 线程不要调太好, 不然会返回很多 400
-THREAD_SUM = 3
+THREAD_SUM = 5
 
 
 def startSpider():

@@ -121,11 +121,48 @@ class dytt_Lastest(object):
         content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/p/text()")
         # 匹配出来有两张图片, 第一张是海报, 第二张是电影画面截图
         imgs = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/p/img/@src")
-        print(content)
+        # print(content)
+
+        # 为了兼容 2012 年前的页面
+        if not len(content):
+            content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/span/text()")
 
         # 有些页面特殊, 需要用以下表达式来重新获取信息
+        # 电影天堂页面好混乱啊~
         if not len(content):
             content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/div/text()")
+
+        if not len(content):
+            content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/p/font/text()")
+            if len(content) < 5:
+                content = selector.xpath("//div[@class='co_content8']/ul/tr/td/p/font/text()")
+
+        if not len(content):
+            content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/p/span/text()")
+
+        if not len(content):
+            content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/div/span/text()")
+
+        if not len(content):
+            content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/font/text()")
+
+        if not len(content):
+            content = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/p/text()")
+
+        # print(content)
+
+        # 不同渲染页面要采取不同的抓取方式抓取图片
+        if not len(imgs):
+            imgs = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/img/@src")
+
+        if not len(imgs):
+            imgs = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/p/img/@src")
+
+        if not len(imgs):
+            imgs = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/div/img/@src")
+
+        if not len(imgs):
+            imgs = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/div/img/@src")
 
         # 类型
         if content[0][0:1] != '◎':
@@ -189,13 +226,44 @@ class dytt_Lastest(object):
         # 主演
         contentDir['actors'] = actor
         # 海报
-        contentDir['placard'] = imgs[0]
+        if imgs[0] != None:
+            contentDir['placard'] = imgs[0]
         # 影片截图
-        contentDir['screenshot'] = imgs[1]
+        if imgs[1] != None:
+            contentDir['screenshot'] = imgs[1]
         # 下载地址
         ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/table/tbody/tr/td/a/text()")
+
+        # 为了兼容 2012 年前的页面
+        if not len(ftp):
+            ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/table/tbody/tr/td/font/a/text()")
+
+        if not len(ftp):
+            ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/table/tbody/tr/td/a/text()")
+
+        if not len(ftp):
+            ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/div/table/tbody/tr/td/font/a/text()")
+
+        if not len(ftp):
+            ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/div/table/tbody/tr/td/a/text()")
+
+        if not len(ftp):
+            ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/td/table/tbody/tr/td/a/text()")
+
+        if not len(ftp):
+            ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/p/span/a/text()")
+
+        if not len(ftp):
+            ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/div/div/table/tbody/tr/td/font/a/text()")
+
+        if not len(ftp):
+            ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/span/table/tbody/tr/td/font/a/text()")
+
+        if not len(ftp):
+            ftp = selector.xpath("//div[@class='co_content8']/ul/tr/td/div/div/td/div/span/div/table/tbody/tr/td/font/a/text()")
+
         contentDir['ftpurl'] = ftp[0]
         # 页面链接
         contentDir['dytt8_url'] = url
-        # print(contentDir)
+        print(contentDir)
         return contentDir

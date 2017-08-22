@@ -60,5 +60,5 @@ class FloorWorkThread(threading.Thread):
 
             except Exception as e:
                 # print('catsh  Exception ==== ')
-                self.queue.put(url)
+                # self.queue.put(url)
                 print(e)
